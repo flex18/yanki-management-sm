@@ -5,6 +5,7 @@ spring:
     name: yanki-ms
   cloud:
     config:
+      label: ${BRANCH_GIT:master}
       name: yanki-ms
       discovery:
         service-id: config_server
@@ -15,11 +16,12 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER:http://localhost:${EUREKA_PORT:8761}/eureka}
     register-with-eureka: true
+  instance:
+    prefer-ip-address: true
 # yanki
 messagingyanki:
   urlKafkaServer: ${URL_KAFKA:localhost:9092}
   topicYanki: ${TOPIC_YANKI:yanki}
-  #groupIdConfigKafka: groupyanki
 # default config
 mongo:
   db: ${MONGO_DB:yankiDB}
